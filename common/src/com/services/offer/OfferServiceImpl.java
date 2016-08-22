@@ -1,6 +1,5 @@
 package com.services.offer;
 
-import com.entity.OfferEntity;
 
 import java.util.List;
 import java.util.Set;

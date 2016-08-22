@@ -1,8 +1,6 @@
 package com.services.admin;
 
 import org.apache.commons.io.FileUtils;
-import org.springframework.core.io.DefaultResourceLoader;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.inject.Named;

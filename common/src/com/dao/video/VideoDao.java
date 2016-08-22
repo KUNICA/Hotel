@@ -16,8 +16,6 @@ import java.util.List;
 @Component
 public class VideoDao implements VideoDaoImpl {
 
-
-
     private SessionFactory sessionFactory;
 
     private Session currentSession() {           // Извлекает текущий

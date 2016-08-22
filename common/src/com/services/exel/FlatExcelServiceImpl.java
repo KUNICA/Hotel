@@ -11,5 +11,5 @@ import java.lang.reflect.InvocationTargetException;
  * Created by user on 09.08.2016.
  */
 public interface FlatExcelServiceImpl {
-    boolean addFlat(InputStream inputStream,String userName) throws InvalidFormatException,InvocationTargetException, IllegalArgumentException,HotelFormatExelExeption, IOException;
+    boolean addFlat(InputStream inputStream,String userName) throws NumberFormatException, InvalidFormatException,InvocationTargetException, IllegalArgumentException,HotelFormatExelExeption, IOException;
 }

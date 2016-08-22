@@ -5,7 +5,6 @@ import com.entity.FlatsEntity;
 import com.entity.ImagesEntity;
 import com.google.common.base.Strings;
 import com.services.shopingcart.ShopingCartServiceIml;
-import org.hibernate.annotations.Index;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;

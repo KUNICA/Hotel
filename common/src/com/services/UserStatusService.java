@@ -4,11 +4,10 @@ import com.dao.IUserStatusDao;
 import com.entity.UserStatus;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
-import java.util.Date;
+
 
 /**
  * Сервис для управлением над статусом пользователя

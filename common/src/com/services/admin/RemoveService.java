@@ -4,8 +4,6 @@ import com.entity.*;
 
 import javax.inject.Named;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  * Created by user on 10.08.2016.

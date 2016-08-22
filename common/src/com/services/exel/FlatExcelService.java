@@ -9,7 +9,6 @@ package com.services.exel;
         import com.google.common.base.Strings;
         import com.services.SaveOrUpdateObjectInputServiceImpl;
         import com.services.admin.RemoveServiceImpl;
-        import org.springframework.stereotype.Service;
 
         import javax.inject.Inject;
         import javax.inject.Named;
@@ -40,14 +39,14 @@ public class FlatExcelService implements FlatExcelServiceImpl {
     protected RemoveServiceImpl removeService;
 
 
-    public boolean addFlat(InputStream inputStream,String userName) throws InvalidFormatException, NullPointerException,IOException,InvocationTargetException, IllegalArgumentException, HotelFormatExelExeption {
+    public boolean addFlat(InputStream inputStream,String userName) throws NumberFormatException, InvalidFormatException, NullPointerException,IOException,InvocationTargetException, IllegalArgumentException, HotelFormatExelExeption {
         List hotels = exelParser.getHotels(inputStream);
         List flats = getFlat(hotels,userName);
         saveOrUpdateObjectInputService.inputObject(flats.get(0)); //одну страницу
         return true;
     }
 
-    private List getFlat(List hotels,String userName)throws NullPointerException,InvocationTargetException, IllegalArgumentException,IOException{
+    private List getFlat(List hotels,String userName)throws NumberFormatException, NullPointerException,InvocationTargetException, IllegalArgumentException,IOException{
         ArrayList<FlatsEntity> flats = new ArrayList<FlatsEntity>();
         for (Object it: hotels) {
             HotelExel hotel = (HotelExel) it;
@@ -58,7 +57,7 @@ public class FlatExcelService implements FlatExcelServiceImpl {
         return flats;
     }
 
-    private FlatsEntity updateInit(Long id,HotelExel hotel,String userName) throws NullPointerException, InvocationTargetException, IllegalArgumentException,IOException {
+    private FlatsEntity updateInit(Long id,HotelExel hotel,String userName) throws NumberFormatException, NullPointerException, InvocationTargetException, IllegalArgumentException,IOException {
         FlatsEntity flatsEntity = (FlatsEntity)flatDao.getFlat(id);
         initFlat(flatsEntity,hotel);
         initAdress(flatsEntity.getAdress(),hotel);
@@ -69,7 +68,7 @@ public class FlatExcelService implements FlatExcelServiceImpl {
         return flatsEntity;
     }
 
-    private FlatsEntity saveInit(HotelExel hotel,String userName) throws NullPointerException,InvocationTargetException, IllegalArgumentException,IOException{
+    private FlatsEntity saveInit(HotelExel hotel,String userName) throws NumberFormatException,NullPointerException,InvocationTargetException, IllegalArgumentException,IOException{
         FlatsEntity flatsEntity = setFlatParametrs(hotel,userName);
         flatsEntity.setAdress(getAdress(hotel,userName));
         setPhotos(flatsEntity,hotel,userName);
@@ -117,7 +116,7 @@ public class FlatExcelService implements FlatExcelServiceImpl {
         }
     }
 
-    private void initFlat(FlatsEntity flatsEntity,HotelExel hotel){
+    private void initFlat(FlatsEntity flatsEntity,HotelExel hotel) throws NumberFormatException{
         if(!Strings.isNullOrEmpty(hotel.getName())){
             flatsEntity.setNameImage(hotel.getName());
         }
@@ -141,7 +140,7 @@ public class FlatExcelService implements FlatExcelServiceImpl {
         }
     }
 
-    private FlatsEntity setFlatParametrs(HotelExel hotel,String userName){
+    private FlatsEntity setFlatParametrs(HotelExel hotel,String userName) throws NumberFormatException{
         FlatsEntity flatsEntity = new FlatsEntity();
         initFlat(flatsEntity,hotel);
         OperationsEntity operationIn = new OperationsEntity();
@@ -152,32 +151,32 @@ public class FlatExcelService implements FlatExcelServiceImpl {
         return flatsEntity;
     }
 
-    private void initAdress(AdressEntity adressEntity,HotelExel hotel){
-        String remark = "";
-        if(!Strings.isNullOrEmpty(hotel.getCity())){
-            adressEntity.setCity(hotel.getCity());
-            remark += hotel.getCity();
-        }
-        if(!Strings.isNullOrEmpty(hotel.getStreet())){
-            adressEntity.setStreet(hotel.getStreet());
-            remark += remark.equals("") ? hotel.getStreet() : " ," + hotel.getStreet();
-        }
-        if(!Strings.isNullOrEmpty(hotel.getHouse())){
-            adressEntity.setBuildingNum(Integer.parseInt(hotel.getHouse()));
-            remark += remark.equals("") ? hotel.getHouse() : " ," + hotel.getHouse();
-        }
-        if(!Strings.isNullOrEmpty(hotel.getHousing())){
-            adressEntity.setСorpNum(Integer.parseInt(hotel.getHousing()));
-            remark += remark.equals("") ? hotel.getHousing() : " ," + hotel.getHousing();
-        }
-        if(!Strings.isNullOrEmpty(hotel.getApartment())){
-            adressEntity.setFlatNum(Integer.parseInt(hotel.getApartment()));
-            remark += remark.equals("") ? hotel.getApartment() : " ," + hotel.getApartment();
-        }
-        adressEntity.setRemark(remark);
+    private void initAdress(AdressEntity adressEntity,HotelExel hotel) throws NumberFormatException{
+           String remark = "";
+           if (!Strings.isNullOrEmpty(hotel.getCity())) {
+               adressEntity.setCity(hotel.getCity());
+               remark += hotel.getCity();
+           }
+           if (!Strings.isNullOrEmpty(hotel.getStreet())) {
+               adressEntity.setStreet(hotel.getStreet());
+               remark += remark.equals("") ? hotel.getStreet() : " ,улица " + hotel.getStreet();
+           }
+           if (!Strings.isNullOrEmpty(hotel.getHouse())) {
+               adressEntity.setBuildingNum(Integer.parseInt(hotel.getHouse()));
+               remark += remark.equals("") ? hotel.getHouse() : " , дом " + hotel.getHouse();
+           }
+           if (!Strings.isNullOrEmpty(hotel.getHousing())) {
+               adressEntity.setСorpNum(Integer.parseInt(hotel.getHousing()));
+               remark += remark.equals("") ? hotel.getHousing() : " , корпус " + hotel.getHousing();
+           }
+           if (!Strings.isNullOrEmpty(hotel.getApartment())) {
+               adressEntity.setFlatNum(Integer.parseInt(hotel.getApartment()));
+               remark += remark.equals("") ? hotel.getApartment() : " ,квартира " + hotel.getApartment();
+           }
+           adressEntity.setRemark(remark);
     }
 
-    private AdressEntity getAdress(HotelExel hotel, String userName){
+    private AdressEntity getAdress(HotelExel hotel, String userName) throws NumberFormatException{
         AdressEntity adressEntity = new AdressEntity();
         initAdress(adressEntity,hotel);
         OperationsEntity operationAdressIn = new OperationsEntity();

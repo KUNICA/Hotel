@@ -1,7 +1,6 @@
 package com.dao.offer;
 
 import com.entity.OfferEntity;
-import com.entity.ShoppingCartEntity;
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;

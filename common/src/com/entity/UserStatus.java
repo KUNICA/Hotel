@@ -7,11 +7,14 @@ import java.util.Date;
  * Created by user on 06.07.2016.
  */
 @Entity
-@Table(name = "user_status", schema = "hotel_work", catalog = "")
+@Table(name = "user_status", schema = "hotel_work")
 public class UserStatus implements Comparable<UserStatus>{
     private String username;
     private Integer authFailureCount;
     private Date lastAuthFailure;
+
+    public UserStatus() {
+    }
 
     @Id
     @Column(name = "username", nullable = false, length = 255)
@@ -22,7 +25,7 @@ public class UserStatus implements Comparable<UserStatus>{
     public UserStatus(String username) {
         this.username = username;
         this.authFailureCount = 1;
-        this.lastAuthFailure =  new java.util.Date();
+        this.lastAuthFailure =  new Date();
     }
 
     public UserStatus(String username, int authFailureCount, java.util.Date lastAuthFailure) {

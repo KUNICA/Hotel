@@ -2,7 +2,6 @@ package com.services.pagination;
 
 import com.dao.pagination.FlatsEntityPaginationDao;
 import com.dataweb.MenuParametrs;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;

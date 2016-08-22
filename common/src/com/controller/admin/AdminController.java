@@ -1,8 +1,6 @@
 package com.controller.admin;
 
 import com.exel.HotelFormatExelExeption;
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import com.services.SaveOrUpdateObjectInputServiceImpl;
 import com.services.account.IPersonalDataService;
 import com.services.admin.FlatServiceImpl;
 import com.services.admin.ImageFileServiceImpl;
@@ -74,7 +72,7 @@ public class AdminController {
             } catch (HotelFormatExelExeption hotelFormatExelExeption) {
                 model.addAttribute("error",hotelFormatExelExeption.getFildName());
                 return "admin";
-            } catch (InvocationTargetException | IOException | NullPointerException e) {
+            } catch (InvocationTargetException | IOException | NullPointerException | NumberFormatException e) {
                 model.addAttribute("error",e.fillInStackTrace());
                 return "admin";
             }

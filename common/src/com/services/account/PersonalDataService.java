@@ -21,5 +21,4 @@ public class PersonalDataService implements IPersonalDataService {
         return personalDataDao.getPersonalData(userName);
     }
 
-
 }

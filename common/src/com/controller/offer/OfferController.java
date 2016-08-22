@@ -1,8 +1,6 @@
 package com.controller.offer;
 
 import com.entity.OfferEntity;
-import com.entity.OperationType;
-import com.entity.OperationsEntity;
 import com.services.SaveOrUpdateObjectInputServiceImpl;
 import com.services.account.IPersonalDataService;
 import com.services.alert.AlertServiceImpl;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.List;
 
 /**
